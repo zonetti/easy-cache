@@ -30,14 +30,8 @@ var EasyCache = function() {
       var self = this
         , record = cache[key];
 
-      if (record != undefined) {
-        if (record.expire && record.expire <= self.now()) {
-          self.unset(key);
-          throw new Error('Key expired: ' + key);
-        } else {
-          return record.value;
-        }
-      }
+      if (record != undefined)
+        return record.value;
 
       throw new Error('Invalid key: ' + key);
     },
