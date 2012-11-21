@@ -1,12 +1,11 @@
 var EasyCache = function() {
 
-  var cache = {};
+  var cache = {}
+    , now = function() {
+      return new Date().getTime();
+    };
 
   return {
-
-    now: function() {
-      return new Date().getTime();
-    },
 
     set:  function(key, value, duration) {
       var self = this
@@ -17,7 +16,7 @@ var EasyCache = function() {
         clearTimeout(oldRecord.timeout);
 
       if (!isNaN(duration)) {
-        newRecord.expire = duration + self.now();
+        newRecord.expire = duration + now();
         newRecord.timeout = setTimeout(function() {
           self.unset(key);
         }, duration);
@@ -38,7 +37,7 @@ var EasyCache = function() {
 
     exists: function(key) {
       return cache[key]
-        && ((cache[key].expire && cache[key].expire <= this.now()) || cache[key].expire == undefined);
+        && ((cache[key].expire && cache[key].expire <= now()) || cache[key].expire == undefined);
     },
 
     unset: function(key) {
