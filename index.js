@@ -18,7 +18,7 @@ var EasyCache = function() {
       if (!isNaN(duration)) {
         newRecord.expire = duration + now();
         newRecord.timeout = setTimeout(function() {
-          self.unset(key);
+          delete(cache[key]);
         }, duration);
       }
 
@@ -45,7 +45,7 @@ var EasyCache = function() {
     },
 
     clear: function() {
-      return cache = {};
+      cache = {};
     }
 
   };
