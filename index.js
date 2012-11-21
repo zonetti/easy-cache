@@ -38,7 +38,7 @@ var EasyCache = function() {
 
     exists: function(key) {
       return cache[key]
-        && (cache[key].expire && cache[key].expire <= this.now() || !cache[key].expire);
+        && ((cache[key].expire && cache[key].expire <= this.now()) || cache[key].expire == undefined);
     },
 
     unset: function(key) {
