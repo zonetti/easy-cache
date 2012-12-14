@@ -1,4 +1,9 @@
 {
   "name": "easy-cache",
+  "description": "A simple NodeJS module to handle in-memory cache",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/zonetti/easy-cache"
+  },
   "version": "0.0.1"
 }
