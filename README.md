@@ -16,7 +16,7 @@ npm install easy-cache
 var cache = require('easy-cache');
 
 cache.set('foo', 'bar');
-cache.getSize(); // output: 1
+console.log(cache.getSize()); // output: 1
 console.log(cache.get('foo')); // output: bar
 cache.unset('foo'); // remove specific record
 
