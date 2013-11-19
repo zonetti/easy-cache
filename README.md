@@ -1,5 +1,7 @@
 # easy-cache
 
+[![Build Status](https://secure.travis-ci.org/zonetti/easy-cache.png)](http://travis-ci.org/zonetti/easy-cache)
+
 An easy way to handle in-memory cache.
 
 ## Install
@@ -14,6 +16,7 @@ npm install easy-cache
 var cache = require('easy-cache');
 
 cache.set('foo', 'bar');
+cache.getSize(); // output: 1
 console.log(cache.get('foo')); // output: bar
 cache.unset('foo'); // remove specific record
 
