@@ -5,5 +5,12 @@
     "type": "git",
     "url": "http://github.com/zonetti/easy-cache"
   },
-  "version": "0.0.1"
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "should": "~2.0.2"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "0.1.0"
 }

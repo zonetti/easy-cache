@@ -1,21 +1,23 @@
-var EasyCache = function() {
+var EasyCache = module.exports = (function() {
 
-  var cache = {}
-    , now = function() {
-      return new Date().getTime();
-    };
+  var self = this;
+  var cache = {};
+
+  function now() {
+    return new Date().getTime();
+  };
 
   return {
 
-    set:  function(key, value, duration) {
-      var self = this
-        , oldRecord = cache[key]
-        , newRecord = {value: value};
+    set: function(key, value, duration) {
+      var oldRecord = cache[key];
+      var newRecord = {value: value};
 
-      if (oldRecord && oldRecord.timeout)
+      if (oldRecord && oldRecord.timeout) {
         clearTimeout(oldRecord.timeout);
+      }
 
-      if (!isNaN(duration)) {
+      if (typeof duration === 'number' && duration % 1 == 0) {
         newRecord.expire = duration + now();
         newRecord.timeout = setTimeout(function() {
           delete(cache[key]);
@@ -26,22 +28,31 @@ var EasyCache = function() {
     },
 
     get: function(key) {
-      var self = this
-        , record = cache[key];
+      var record = cache[key];
 
-      if (record != undefined)
+      if (typeof record !== 'undefined') {
         return record.value;
+      }
 
       throw new Error('Invalid key: ' + key);
     },
 
     exists: function(key) {
-      return cache[key]
-        && ((cache[key].expire && cache[key].expire <= now()) || cache[key].expire == undefined);
+      return (
+        typeof cache[key] !== 'undefined' &&
+        (
+          (typeof cache[key].expire !== 'undefined' && cache[key].expire >= now()) ||
+          typeof cache[key].expire === 'undefined'
+        )
+      );
     },
 
     unset: function(key) {
       delete(cache[key]);
+    },
+
+    getSize: function() {
+      return Object.keys(cache).length;
     },
 
     clear: function() {
@@ -50,6 +61,4 @@ var EasyCache = function() {
 
   };
 
-}
-
-module.exports = new EasyCache();
+})();
