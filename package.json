@@ -1,6 +1,7 @@
 {
   "name": "easy-cache",
   "description": "A simple NodeJS module to handle in-memory cache",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "http://github.com/zonetti/easy-cache"
@@ -12,5 +13,11 @@
   "scripts": {
     "test": "make test"
   },
-  "version": "0.1.0"
+  "keywords": [
+    "cache",
+    "memory",
+    "timeout",
+    "duration",
+    "temporary"
+  ]
 }
