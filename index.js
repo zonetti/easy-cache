@@ -13,7 +13,7 @@ var EasyCache = module.exports = (function() {
       var oldRecord = cache[key];
       var newRecord = {value: value};
 
-      if (oldRecord && oldRecord.timeout) {
+      if (typeof oldRecord !== 'undefined' && typeof oldRecord.timeout !== 'undefined') {
         clearTimeout(oldRecord.timeout);
       }
 
