@@ -1,6 +1,5 @@
 var EasyCache = module.exports = (function() {
 
-  var self = this;
   var cache = {};
 
   function now() {
@@ -10,6 +9,7 @@ var EasyCache = module.exports = (function() {
   return {
 
     set: function(key, value, duration) {
+      var self = this;
       var oldRecord = cache[key];
       var newRecord = {value: value};
 
@@ -20,7 +20,7 @@ var EasyCache = module.exports = (function() {
       if (typeof duration === 'number' && duration % 1 == 0) {
         newRecord.expire = duration + now();
         newRecord.timeout = setTimeout(function() {
-          delete(cache[key]);
+          self.unset(key);
         }, duration);
       }
 
@@ -41,7 +41,7 @@ var EasyCache = module.exports = (function() {
       return (
         typeof cache[key] !== 'undefined' &&
         (
-          (typeof cache[key].expire !== 'undefined' && cache[key].expire >= now()) ||
+          (typeof cache[key].expire !== 'undefined' && cache[key].expire > now()) ||
           typeof cache[key].expire === 'undefined'
         )
       );
