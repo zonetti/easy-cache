@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/zonetti/easy-cache.png)](http://travis-ci.org/zonetti/easy-cache)
 
-An easy way to handle in-memory cache.
+A simple NodeJS module to handle in-memory key/value cache.
 
 ## Install
 

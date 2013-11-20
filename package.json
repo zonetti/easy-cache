@@ -1,6 +1,6 @@
 {
   "name": "easy-cache",
-  "description": "A simple NodeJS module to handle in-memory cache",
+  "description": "An easy way to handle in-memory key/value cache",
   "version": "0.1.1",
   "repository": {
     "type": "git",
@@ -16,6 +16,8 @@
   "keywords": [
     "cache",
     "memory",
+    "key",
+    "value",
     "timeout",
     "duration",
     "temporary"
