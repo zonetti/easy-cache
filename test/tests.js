@@ -34,7 +34,7 @@ describe('Tests', function() {
       cache.exists('timer').should.be.false;
       cache.getSize().should.equal(0);
       try {
-        cache.get('timer').should.equal('value');
+        cache.get('timer');
       } catch(err) {
         err.message.should.be.equal('Invalid key: timer');
         done();
