@@ -1,6 +1,4 @@
-# easy-cache
-
-[![Build Status](https://secure.travis-ci.org/zonetti/easy-cache.png)](http://travis-ci.org/zonetti/easy-cache)
+# easy-cache [![Build Status](https://secure.travis-ci.org/zonetti/easy-cache.png)](http://travis-ci.org/zonetti/easy-cache)
 
 A simple NodeJS module to handle in-memory key/value cache.
 
