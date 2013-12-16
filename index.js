@@ -1,10 +1,10 @@
-var EasyCache = module.exports = (function() {
+module.exports = (function() {
 
   var cache = {};
 
   function now() {
     return new Date().getTime();
-  };
+  }
 
   return {
 
@@ -17,7 +17,7 @@ var EasyCache = module.exports = (function() {
         clearTimeout(oldRecord.timeout);
       }
 
-      if (typeof duration === 'number' && duration % 1 == 0) {
+      if (typeof duration === 'number' && duration % 1 === 0) {
         newRecord.expire = duration + now();
         newRecord.timeout = setTimeout(function() {
           self.unset(key);
