@@ -34,7 +34,7 @@ module.exports = (function() {
         return record.value;
       }
 
-      throw new Error('Invalid key: ' + key);
+      return null;
     },
 
     exists: function(key) {
@@ -48,10 +48,10 @@ module.exports = (function() {
     },
 
     unset: function(key) {
-      delete(cache[key]);
+      delete cache[key];
     },
 
-    getSize: function() {
+    size: function() {
       return Object.keys(cache).length;
     },
 

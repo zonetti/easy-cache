@@ -1,10 +1,8 @@
-REPORTER = dot
-
 test: hint
 	@NODE_ENV=test ./node_modules/.bin/mocha \
-		--reporter $(REPORTER) \
+		--reporter spec \
 		--bail \
-		test/*.js
+		test.js
 
 hint:
 	@./node_modules/.bin/jshint index.js

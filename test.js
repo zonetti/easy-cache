@@ -1,8 +1,8 @@
 var should = require('should');
 
-var cache = require('../index');
+var cache = require('./index');
 
-describe('Tests', function() {
+describe('Test', function() {
 
   beforeEach(function() {
     cache.clear();
@@ -12,15 +12,11 @@ describe('Tests', function() {
     cache.set('key', 'value');
     cache.get('key').should.equal('value');
     cache.exists('key').should.be.true;
-    cache.getSize().should.equal(1);
+    cache.size().should.equal(1);
   });
 
-  it('should faild with invalid key', function() {
-    try  {
-      cache.get('invalid key');
-    } catch(err) {
-      err.message.should.be.equal('Invalid key: invalid key');
-    }
+  it('invalid key should return null', function() {
+    should(cache.get('invalid key')).be.null;
   });
 
   it('should set a key that expires', function(done) {
@@ -28,17 +24,13 @@ describe('Tests', function() {
     setTimeout(function() {
       cache.get('timer').should.equal('value');
       cache.exists('timer').should.be.true;
-      cache.getSize().should.equal(1);
+      cache.size().should.equal(1);
     }, 50);
     setTimeout(function() {
       cache.exists('timer').should.be.false;
-      cache.getSize().should.equal(0);
-      try {
-        cache.get('timer');
-      } catch(err) {
-        err.message.should.be.equal('Invalid key: timer');
-        done();
-      }
+      cache.size().should.equal(0);
+      should(cache.get('timer')).be.null;
+      done();
     }, 150);
   });
 
@@ -46,23 +38,19 @@ describe('Tests', function() {
     cache.set('key', 'value');
     cache.get('key').should.equal('value');
     cache.exists('key').should.be.true;
-    cache.getSize().should.equal(1);
+    cache.size().should.equal(1);
     cache.unset('key');
     cache.exists('key').should.be.false;
-    cache.getSize().should.equal(0);
-    try {
-      cache.get('key');
-    } catch(err) {
-      err.message.should.be.equal('Invalid key: key');
-    }
+    cache.size().should.equal(0);
+    should(cache.get('key')).be.null;
   });
 
   it('should clear', function() {
     cache.set('key', 'value');
     cache.set('anotherKey', 'anotherValue');
-    cache.getSize().should.equal(2);
+    cache.size().should.equal(2);
     cache.clear();
-    cache.getSize().should.equal(0);
+    cache.size().should.equal(0);
   });
 
 });

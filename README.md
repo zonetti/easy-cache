@@ -14,27 +14,23 @@ npm install easy-cache
 var cache = require('easy-cache');
 
 cache.set('foo', 'bar');
-console.log(cache.get('foo')); // output: bar
-console.log(cache.getSize()); // output: 1
-cache.unset('foo'); // remove specific record
+console.log(cache.get('foo')); // 'bar'
+console.log(cache.size()); // 1
+cache.unset('foo');
+console.log(cache.get('foo')); // null
+console.log(cache.size()); // 0
 
 cache.set('temporary', 'value', 100); // duration in ms
-console.log(cache.get('temporary')); // output: value
+console.log(cache.get('temporary')); // 'value'
+console.log(cache.exists('temporary')); // true
 
 setTimeout(function() {
-  try {
-    console.log(cache.get('temporary')); // throws an exception
-  } catch(err) {
-    console.log(err.message); // Invalid key: temporary
-  }
-}, 150);
-
-setTimeout(function() {
+  console.log(cache.get('temporary')); // null
   if (!cache.exists('temporary')) {
     console.log('Key does not exist');
   }
   cache.clear(); // remove all records
-}, 200);
+}, 150);
 ```
 
 ## Credits
